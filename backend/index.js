@@ -9,8 +9,6 @@ app.use(router);
 const port = 8000;
 
 app.listen(port, () => {
-    const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-    const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
     var admin = require("firebase-admin");
     var serviceAccount = require("./serviceAccountKey.json");
 
