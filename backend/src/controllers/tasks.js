@@ -30,7 +30,8 @@ exports.createTask = async (req, res) => {
             description: description,
             endDate: endDate,
             name: name,
-            startDate: Timestamp.now().toMillis()
+            startDate: Timestamp.now().toMillis(),
+            uid: uid
         })
         res.send(true);
     } catch(err) {
