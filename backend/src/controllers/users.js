@@ -20,16 +20,15 @@ exports.createUser = async (req, res) => {
     const auth = getAuth();
     try {
         const { email, password, firstName, lastName, birthdate } = req.body;
-        // NÃO FUNCIONA, createUserWithEmailAndPassword NÃO É UMA FUNÇÃO
-        // const user = createUserWithEmailAndPassword(auth, email, password)
-        //     .then((userCredential) => {
-        //         const user = userCredential.user;
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         res.send(errorCode, errorMessage);
-        //     });
+         createUserWithEmailAndPassword(auth, email, password)
+             .then((userCredential) => {
+                 const user = userCredential.user;
+             })
+             .catch((error) => {
+                 const errorCode = error.code;
+                 const errorMessage = error.message;
+                 res.send(errorCode, errorMessage);
+            });
         const userRef = db.collection('users').doc();
         await userRef.set({
             email: email,
