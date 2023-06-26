@@ -1,5 +1,4 @@
 const { getFirestore } = require('firebase-admin/firestore');
-const { getAuth, createUserWithEmailAndPassword } = require('firebase-admin/auth');
 
 exports.getAllUsers = async (req, res) => {
     const db = getFirestore();
@@ -19,16 +18,7 @@ exports.createUser = async (req, res) => {
     const db = getFirestore();
     const auth = getAuth();
     try {
-        const { email, password, firstName, lastName, birthdate } = req.body;
-         createUserWithEmailAndPassword(auth, email, password)
-             .then((userCredential) => {
-                 const user = userCredential.user;
-             })
-             .catch((error) => {
-                 const errorCode = error.code;
-                 const errorMessage = error.message;
-                 res.send(errorCode, errorMessage);
-            });
+        const { firstName, lastName, birthdate } = req.body;
         const userRef = db.collection('users').doc();
         await userRef.set({
             email: email,
